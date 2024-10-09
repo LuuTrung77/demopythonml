@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop Price Prediction</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <center>
+    <h1>Laptop Price Prediction</h1>
+    <form action="/predict" method="post">
+        <label for="ram">RAM:</label>
+        <input type="number" name="ram" required><br>
+        <label for="ssd">SSD:</label>
+        <input type="number" name="ssd" required><br>
+        <label for="cpu">CPU:</label>
+        <input type="number" name="cpu" required><br>
+        <label for="screen">Screen:</label>
+        <input type="number" name="screen" required><br>
+        <label for="battery">Battery:</label>
+        <input type="number" name="battery" required><br>
+        <label for="charging">Charging:</label>
+        <input type="number" name="charging" required><br>
+        <label for="model">Choose a model:</label>
+        <select name="model">
+            {% for model in models %}
+                <option value="{{ model }}">{{ model.capitalize() }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if prediction %}
+        <h2>Prediction: {{ prediction }}</h2>
+        <h3>Model Reliability: {{ reliability }}</h3>
+    {% endif %}
+
+</center>
+</body>
+</html>
